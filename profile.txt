@@ -1,0 +1,32 @@
+*** Settings ***
+Library           RequestsLibrary
+Resource          arg.txt
+
+*** Test Cases ***
+请求profile接口
+    请求profile接口    ${host[0]}
+    请求profile接口    ${host[1]}
+    请求profile接口    ${host[2]}
+    请求profile接口    ${host[3]}
+    请求profile接口    ${host[4]}
+    请求profile接口    ${host[5]}
+    请求profile接口    ${host[6]}
+    请求profile接口    ${host[7]}
+    请求profile接口    ${host[8]}
+    请求profile接口    ${host[9]}
+    请求profile接口    ${host[10]}
+    请求profile接口    ${host[11]}
+    请求profile接口    ${host[12]}
+    请求profile接口    ${host[13]}
+    请求profile接口    ${host[14]}
+    请求profile接口    ${host[15]}
+
+*** Keywords ***
+请求profile接口
+    [Arguments]    ${host}
+    create session    danmuonline    http://${host}
+    ${bbb}    get    danmuonline    /profile?cid=9&uid=411772922&iid=130959528&aid=115971&ct=1001&ouid=10259978922col
+    should be equal as integers    ${bbb.status_code}    200
+    ${json_bbb}    to json    ${bbb.content}
+    should be true    ${json_bbb['danmu_enable']}
+    log    ${bbb.content}

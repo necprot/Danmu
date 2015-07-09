@@ -1,0 +1,37 @@
+*** Settings ***
+Library           RequestsLibrary
+Resource          arg.txt
+
+*** Variables ***
+
+*** Test Cases ***
+请求弹幕list \ 返回的接口count字段有值 且iid为本片id
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[0]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[1]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[2]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[3]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[4]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[5]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[6]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[7]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[8]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[9]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[10]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[11]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[12]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[13]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[14]}
+    请求弹幕list 返回接口count字段有值且iid正确    ${host[15]}
+
+*** Keywords ***
+请求弹幕list 返回接口count字段有值且iid正确
+    [Arguments]    ${host}
+    ${iid}    set variable    130505452
+    create session    danmuonline    http://${host}
+    ${bbb}    get    danmuonline    /list?iid=${iid}&uid=48899507&mat=0&type=1&mcount=1&ct=1001&qq-pf-to=pcqq.c2c
+    should be equal as integers    ${bbb.status_code}    200
+    ${bbb_json}    to json    ${bbb.content}
+    should be true    ${bbb_json["count"]}>0
+    should be equal as integers    ${bbb_json["result"][0]["iid"]}    ${iid}
+    should be equal as integers    ${bbb_json["result"][-1]["iid"]}    ${iid}
+    log    ${bbb.content}

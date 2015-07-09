@@ -1,0 +1,35 @@
+*** Settings ***
+Library           RequestsLibrary
+Resource          arg.txt
+Library           Selenium2Library
+
+*** Test Cases ***
+请求count接口，返回值成功且count字段大于0
+    [Setup]
+    请求count接口，返回成功且count字段大于0    ${host[0]}
+    请求count接口，返回成功且count字段大于0    ${host[1]}
+    请求count接口，返回成功且count字段大于0    ${host[2]}
+    请求count接口，返回成功且count字段大于0    ${host[3]}
+    请求count接口，返回成功且count字段大于0    ${host[4]}
+    请求count接口，返回成功且count字段大于0    ${host[5]}
+    请求count接口，返回成功且count字段大于0    ${host[6]}
+    请求count接口，返回成功且count字段大于0    ${host[7]}
+    请求count接口，返回成功且count字段大于0    ${host[8]}
+    请求count接口，返回成功且count字段大于0    ${host[9]}
+    请求count接口，返回成功且count字段大于0    ${host[10]}
+    请求count接口，返回成功且count字段大于0    ${host[11]}
+    请求count接口，返回成功且count字段大于0    ${host[12]}
+    请求count接口，返回成功且count字段大于0    ${host[13]}
+    请求count接口，返回成功且count字段大于0    ${host[14]}
+    请求count接口，返回成功且count字段大于0    ${host[15]}
+
+*** Keywords ***
+请求count接口，返回成功且count字段大于0
+    [Arguments]    ${host}
+    ${iid}    set variable    130959528
+    create session    danmuonline    http://${host}
+    ${bbb}    get    danmuonline    /count?iid=${iid}&ct=1001
+    should be equal as integers    ${bbb.status_code}    200
+    ${bbb_json}    to json    ${bbb.content}
+    should be true    ${bbb_json["count"]}>0
+    log    ${bbb.content}

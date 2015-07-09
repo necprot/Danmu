@@ -1,0 +1,30 @@
+*** Settings ***
+Library           RequestsLibrary
+Resource          arg.txt
+
+*** Test Cases ***
+请求该xml，返回code正确
+    请求xml，返回code正确    ${host[0]}
+    请求xml，返回code正确    ${host[1]}
+    请求xml，返回code正确    ${host[2]}
+    请求xml，返回code正确    ${host[3]}
+    请求xml，返回code正确    ${host[4]}
+    请求xml，返回code正确    ${host[5]}
+    请求xml，返回code正确    ${host[6]}
+    请求xml，返回code正确    ${host[7]}
+    请求xml，返回code正确    ${host[8]}
+    请求xml，返回code正确    ${host[9]}
+    请求xml，返回code正确    ${host[10]}
+    请求xml，返回code正确    ${host[11]}
+    请求xml，返回code正确    ${host[12]}
+    请求xml，返回code正确    ${host[13]}
+    请求xml，返回code正确    ${host[14]}
+    请求xml，返回code正确    ${host[15]}
+
+*** Keywords ***
+请求xml，返回code正确
+    [Arguments]    ${host}
+    create session    danmuonline    http://${host}
+    ${bbb}    get    danmuonline    /crossdomain.xml
+    should be equal as integers    ${bbb.status_code}    200
+    log    ${bbb.content}

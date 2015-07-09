@@ -1,0 +1,15 @@
+*** Settings ***
+Library           RequestsLibrary
+Resource          arg.txt
+Library           Collections
+Library           Compare.py
+Library           PublicKeywords.py
+
+*** Keywords ***
+模拟登录
+    [Arguments]    ${username}    ${password}
+    Create Session    logintest    http://login.tudou.com
+    ${response}    get    logintest    /passport/ytLogin.do?app=webapp&loginname=${username}&passwd=${password}
+    ${cookies}    Cookie To String    ${response.cookies}
+    ${headers}    Create Dictionary    Cookie    ${cookies}
+    [Return]    ${headers}
