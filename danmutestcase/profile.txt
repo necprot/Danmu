@@ -1,9 +1,11 @@
 *** Settings ***
 Library           RequestsLibrary
 Resource          arg.txt
+Resource          danmu.txt
 
 *** Test Cases ***
 请求profile接口
+    ${host}    获取host
     请求profile接口    ${host[0]}
     请求profile接口    ${host[1]}
     请求profile接口    ${host[2]}
@@ -19,7 +21,7 @@ Resource          arg.txt
     请求profile接口    ${host[12]}
     请求profile接口    ${host[13]}
     请求profile接口    ${host[14]}
-    请求profile接口    ${host[15]}
+    请求profile接口    service.danmu.tudou.com
 
 *** Keywords ***
 请求profile接口

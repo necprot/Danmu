@@ -1,11 +1,13 @@
 *** Settings ***
 Library           RequestsLibrary
 Resource          arg.txt
+Resource          danmu.txt
 
 *** Variables ***
 
 *** Test Cases ***
 请求弹幕list \ 返回的接口count字段有值 且iid为本片id
+    ${host}    获取host
     请求弹幕list 返回接口count字段有值且iid正确    ${host[0]}
     请求弹幕list 返回接口count字段有值且iid正确    ${host[1]}
     请求弹幕list 返回接口count字段有值且iid正确    ${host[2]}
@@ -21,7 +23,7 @@ Resource          arg.txt
     请求弹幕list 返回接口count字段有值且iid正确    ${host[12]}
     请求弹幕list 返回接口count字段有值且iid正确    ${host[13]}
     请求弹幕list 返回接口count字段有值且iid正确    ${host[14]}
-    请求弹幕list 返回接口count字段有值且iid正确    ${host[15]}
+    请求弹幕list 返回接口count字段有值且iid正确    service.danmu.tudou.com
 
 *** Keywords ***
 请求弹幕list 返回接口count字段有值且iid正确

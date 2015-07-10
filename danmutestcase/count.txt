@@ -1,11 +1,14 @@
 *** Settings ***
+Suite Setup
 Library           RequestsLibrary
 Resource          arg.txt
 Library           Selenium2Library
+Resource          danmu.txt
 
 *** Test Cases ***
 请求count接口，返回值成功且count字段大于0
     [Setup]
+    ${host}    获取host
     请求count接口，返回成功且count字段大于0    ${host[0]}
     请求count接口，返回成功且count字段大于0    ${host[1]}
     请求count接口，返回成功且count字段大于0    ${host[2]}
@@ -21,7 +24,7 @@ Library           Selenium2Library
     请求count接口，返回成功且count字段大于0    ${host[12]}
     请求count接口，返回成功且count字段大于0    ${host[13]}
     请求count接口，返回成功且count字段大于0    ${host[14]}
-    请求count接口，返回成功且count字段大于0    ${host[15]}
+    请求count接口，返回成功且count字段大于0    service.danmu.tudou.com
 
 *** Keywords ***
 请求count接口，返回成功且count字段大于0

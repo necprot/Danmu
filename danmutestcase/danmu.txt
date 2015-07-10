@@ -4,6 +4,7 @@ Resource          arg.txt
 Library           Collections
 Library           Compare.py
 Library           PublicKeywords.py
+Library           C:/Users/tanghuanyu/Desktop/danmupy.py
 
 *** Keywords ***
 模拟登录
@@ -13,3 +14,7 @@ Library           PublicKeywords.py
     ${cookies}    Cookie To String    ${response.cookies}
     ${headers}    Create Dictionary    Cookie    ${cookies}
     [Return]    ${headers}
+
+获取host
+    ${host}    namelist
+    [Return]    ${host}
