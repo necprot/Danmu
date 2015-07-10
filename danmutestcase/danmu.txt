@@ -4,7 +4,7 @@ Resource          arg.txt
 Library           Collections
 Library           Compare.py
 Library           PublicKeywords.py
-Library           C:/Users/tanghuanyu/Desktop/danmupy.py
+Library           danmupy.py
 
 *** Keywords ***
 模拟登录
